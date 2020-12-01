@@ -27,4 +27,4 @@ Ensuite, il faut copier le fichier ``Sx_TDexemple.cs`` du projet ``OutilsTD`` ve
 Si une popup demande s'il faut modifier les références, répondre Oui.
 
 Dans le fichier copié, il est maintenant possible de rajouter des exercices en créant des méthodes/sous-programmes.
-Il ne faut pas oublier de rajouter le nom des méthodes/sous-programmes dans la ligne avec ``new GestionTD`` en séparant les noms par des virgules, par exemple ``Exercice1, Exercice2``...
+Il ne faut pas oublier de rajouter le nom des méthodes/sous-programmes dans la ligne avec ``gestionTD.AjouterExercices`` en séparant les noms par des virgules, par exemple ``gestionTD.AjouterExercices(Exercice1, Exercice2);``
