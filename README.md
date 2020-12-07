@@ -20,11 +20,16 @@ mais il est aussi possible de taper ``git clone https://github.com/th0m4s/algo_e
 
 ## Ajouter des exercices/TD
 
-Pour ajouter des TD, il faut d'abord que le projet du semestre existe. Si ce n'est pas le cas, faire un clic droit sur ``Solution 'MenuAlgo`` puis
-``Ajouter → Nouveau projet... → Bibliothèque de classes C#`` et lui donner comme nom ``AlgoSx`` avec x le numéro du semestre depuis la 1re année (par exemple, le semestre 1 de 3e année correspond au semestre 5).
+Pour ajouter des TD, il faut d'abord que le dossier du semestre existe. Si ce n'est pas le cas, faire un clic droit sur le projet ``MenuAlgo`` (avec la petite icône C# à sa gauche) puis
+``Ajouter → Nouveau dossier`` et lui donner comme nom ``Sx`` avec x le numéro du semestre depuis la 1re année (par exemple, le semestre 1 de 3e année correspond au semestre 5).
 
 Ensuite, il faut copier le fichier ``Sx_TDexemple.cs`` du projet ``OutilsTD`` vers le dossier du projet correspond au semestre et le renommer avec comme nom ``Sx_TDy.cs`` avec x le numéro du semestre et y le numéro du TD.
 Si une popup demande s'il faut modifier les références, répondre Oui.
 
 Dans le fichier copié, il est maintenant possible de rajouter des exercices en créant des méthodes/sous-programmes.
-Il ne faut pas oublier de rajouter le nom des méthodes/sous-programmes dans la ligne avec ``gestionTD.AjouterExercices`` en séparant les noms par des virgules, par exemple ``gestionTD.AjouterExercices(Exercice1, Exercice2);``
+Il faut bien nommer le sous-programme ``ExerciceX`` avec X le numéro de l'exercice pour qu'il soit reconnu.
+
+Il est possible de donner un nom à l'exercice en modifiant le texte entre guillemets au-dessus de la fonction.
+S'il manque cette ligne, ce n'est pas grave (un exercice sans nom peut exister), mais sinon, il faut copier ``[Exercice("Nom de l'exercice")]`` au-dessus de la ligne ``static void ExerciceX()``.
+
+Le nouveau dossier, s'il a été créé, le nouveau fichier et tous les nouveaux sous-programmes seront automatiquement détectés et proposés à l'utilisateur.
