@@ -5,20 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TD9
+namespace AlgoS1
 {
-    class TD9
+    public class S1_TD9
     {
         static void Exercice1()
-        {
+        {          
             Console.Write("Quel est votre âge ? ");
             int age = int.Parse(Console.ReadLine());
 
             if (age < 0)
                 Console.WriteLine("L'âge ne peut pas être un nombre négatif !");
-            else if(age < 25)
+            else if (age < 25)
                 Console.WriteLine("Salut gamin !");
-            else if(age < 55)
+            else if (age < 55)
                 Console.WriteLine("Bonjour Monsieur/Madame.");
             else Console.WriteLine("Je te vénère, oh mon grand maître !");
         }
@@ -28,7 +28,7 @@ namespace TD9
             Console.Write("Quel est votre poids (en kg) ? ");
             int poids = int.Parse(Console.ReadLine());
 
-            if(poids <= 0)
+            if (poids <= 0)
             {
                 Console.WriteLine("Le poids doit être un entier positif !");
                 return;
@@ -37,7 +37,7 @@ namespace TD9
             Console.Write("Quelle est votre taille (en cm) ? ");
             int taille = int.Parse(Console.ReadLine());
 
-            if(taille <= 0)
+            if (taille <= 0)
             {
                 Console.WriteLine("La taille doit être un entier positif !");
                 return;
@@ -216,9 +216,9 @@ namespace TD9
             Console.WriteLine("La température en est de " + f + "°F");
         }
 
-        static void Main(string[] args)
+        public static void Main(GestionTD gestionTD)
         {
-            GestionTD gestionTD = new GestionTD(new Semestre(1, 1), 9, Exercice1, Exercice2, Exercice3, Exercice4, Exercice5, Exercice6, Exercice7, Exercice8, Exercice9, Exercice10, Exercice11, Exercice12, Exercice13);
+            gestionTD.AjouterExercices(Exercice1, Exercice2, Exercice3, Exercice4, Exercice5, Exercice6, Exercice7, Exercice8, Exercice9, Exercice10, Exercice11, Exercice12, Exercice13);
             gestionTD.MenuExercice();
         }
     }

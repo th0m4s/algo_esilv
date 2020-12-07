@@ -11,7 +11,7 @@ namespace OutilsTD
 
         public Semestre(int semestre)
         {
-            this.annee = (int)Math.Ceiling(semestre/2f) + 1;
+            this.annee = (int)Math.Floor(semestre/2f) + 1;
             this.semestre = semestre - (annee - 1) * 2; 
         }
 
@@ -21,9 +21,10 @@ namespace OutilsTD
             this.semestre = semestre;
         }
 
-        public string Display()
+        public string Display(bool upperCase = false)
         {
-            return "ANNEE " + annee + " SEMESTRE " + semestre;
+            string display = "Année " + annee + " Semestre " + semestre;
+            return upperCase ? display.ToUpper() : display;
         }
     }
 }
