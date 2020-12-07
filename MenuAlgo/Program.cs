@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using OutilsTD;
+using RuntimeCompiler;
 
 namespace MenuAlgo
 {
@@ -16,34 +18,60 @@ namespace MenuAlgo
             Console.WriteLine("Exercices par Thomas LEDOS\n");
             // Ce programme détecte automatiquement quels semestres, TD et exercices existent et propose un menu pour les lancer
 
+
+            CompilerExercices exercicesCompiler = new CompilerExercices(new FileInfo(Assembly.GetEntryAssembly().Location).DirectoryName);
+            if (exercicesCompiler.CheckFiles())
+            {
+                Console.WriteLine("Compilation des fichiers locaux...");
+                if (exercicesCompiler.Compile())
+                    Console.WriteLine("Compilation terminée avec succès.");
+                else Console.WriteLine("Impossible de compiler les fichiers locaux.");
+            }
+
+            if(exercicesCompiler.HasAssemblies)
+            {
+                if(!exercicesCompiler.HasCompiled) Console.WriteLine("Chargement des fichiers locaux...");
+                exercicesCompiler.LoadAssemblies();
+                Console.WriteLine("Fichiers locaux chargés.");
+            }
+
             Dictionary<int, Dictionary<int, Type>> semestres = new Dictionary<int, Dictionary<int, Type>>();
             Dictionary<int, Semestre> objectsSemestres = new Dictionary<int, Semestre>();
 
             string pattern = @"^S(?<s>\d+)_TD(?<td>\d+)$";
 
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            foreach(Type type in assembly.GetExportedTypes())
+            List<Assembly> assemblies = new List<Assembly>();
+            assemblies.Add(Assembly.GetExecutingAssembly());
+            assemblies.AddRange(assemblies[0].GetReferencedAssemblies().Select(x => Assembly.Load(x)));
+            assemblies.AddRange(exercicesCompiler.LoadedAssemblies);
+
+            foreach(Assembly assembly in assemblies)
             {
-                Match match = Regex.Match(type.Name, pattern);
-                if(match.Success)
+                foreach (Type type in assembly.GetExportedTypes())
                 {
-                    int semestre = int.Parse(match.Groups["s"].Value);
-                    int numeroTD = int.Parse(match.Groups["td"].Value);
+                    Match match = Regex.Match(type.Name, pattern);
+                    if (match.Success)
+                    {
+                        int semestre = int.Parse(match.Groups["s"].Value);
+                        int numeroTD = int.Parse(match.Groups["td"].Value);
 
-                    if (!semestres.ContainsKey(semestre))
-                        semestres.Add(semestre, new Dictionary<int, Type>());
+                        if (!semestres.ContainsKey(semestre))
+                        {
+                            semestres.Add(semestre, new Dictionary<int, Type>());
 
-                    semestres[semestre].Add(numeroTD, type);
+                            Semestre objectSemestre = new Semestre(semestre);
+                            objectsSemestres.Add(semestre, objectSemestre);
+                        }
 
-                    Semestre objectSemestre = new Semestre(semestre);
-                    objectsSemestres.Add(semestre, objectSemestre);
+                        semestres[semestre].Add(numeroTD, type);
+                    }
                 }
             }
 
             bool continuer = true;
             while(continuer)
             {
-                Console.WriteLine("\nListe des semestres disponibles");
+                Console.WriteLine("\nListe des semestres disponibles :");
 
                 foreach (KeyValuePair<int, Dictionary<int, Type>> semestre in semestres)
                 {
