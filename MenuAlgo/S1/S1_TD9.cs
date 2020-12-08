@@ -12,12 +12,21 @@ namespace MenuAlgo
             int age = int.Parse(Console.ReadLine());
 
             if (age < 0)
+            {
                 Console.WriteLine("L'âge ne peut pas être un nombre négatif !");
+            }
             else if (age < 25)
+            {
                 Console.WriteLine("Salut gamin !");
+            }
             else if (age < 55)
+            {
                 Console.WriteLine("Bonjour Monsieur/Madame.");
-            else Console.WriteLine("Je te vénère, oh mon grand maître !");
+            }
+            else
+            {
+                Console.WriteLine("Je te vénère, oh mon grand maître !");
+            }
         }
 
         [Exercice("Message en fonction de l'IMC (poids et taille)")]
@@ -33,7 +42,7 @@ namespace MenuAlgo
             }
 
             Console.Write("Quelle est votre taille (en cm) ? ");
-            int taille = int.Parse(Console.ReadLine());
+            double taille = int.Parse(Console.ReadLine())/100d;
 
             if (taille <= 0)
             {
@@ -42,14 +51,24 @@ namespace MenuAlgo
             }
 
             double imc = poids / Math.Pow(taille, 2);
+            Console.WriteLine("Votre IMC est " + imc);
 
             if (imc < 19)
+            {
                 Console.WriteLine("Vous êtes maigre.");
+            }
             else if (imc < 26)
+            {
                 Console.WriteLine("Votre IMC est normal.");
+            }
             else if (imc < 40)
+            {
                 Console.WriteLine("Vous êtes en surpoids.");
-            else Console.WriteLine("Vous êtes en fort surpoids.");
+            }
+            else
+            {
+                Console.WriteLine("Vous êtes en fort surpoids.");
+            }
         }
 
         [Exercice("Plus grand parmi de 2 nombres")]
@@ -62,10 +81,17 @@ namespace MenuAlgo
             double b = double.Parse(Console.ReadLine());
 
             if (a == b)
+            {
                 Console.WriteLine("Les 2 nombres sont égaux et valent " + a);
+            }
             else if (a > b)
+            {
                 Console.WriteLine("Le premier nombre est plus grand : " + a + " > " + b);
-            else Console.WriteLine("Le deuxième nombre est plus grand : " + a + " < " + b);
+            }
+            else
+            {
+                Console.WriteLine("Le deuxième nombre est plus grand : " + a + " < " + b);
+            }
         }
 
         [Exercice("Valeur absolue (sans Math.Abs())")]
@@ -195,7 +221,9 @@ namespace MenuAlgo
             // string repetition = string.Join(" ", Enumerable.Repeat(mot, n).ToArray());
             string repetition = mot + " ";
             for (int i = 1; i < n; i++)
+            {
                 repetition += " " + mot;
+            }
 
             Console.WriteLine(repetition);
         }

@@ -12,7 +12,9 @@ namespace MenuAlgo
             int n = Convert.ToInt32(Console.ReadLine());
 
             if (n < 0)
+            {
                 n = -n;
+            }
 
             Console.WriteLine("La valeur absolue est " + n);
         }
@@ -50,7 +52,9 @@ namespace MenuAlgo
             int fact = 1;
 
             for (int i = 2; i <= n; i++)
+            {
                 fact *= i;
+            }
 
             Console.WriteLine("La factorielle de " + n + " est " + fact);
         }
@@ -127,13 +131,21 @@ namespace MenuAlgo
                     }
                 }
             }
-            else if (n <= 1) premier = false;
+            else if (n <= 1)
+            {
+                premier = false;
+            }
             // si n == 2, premier reste à true, mais si n vaut 1, 0, ou si n est négatif,
             // alors ce n'est pas un nombre premier
 
             if (premier)
+            {
                 Console.WriteLine("Le nombre " + n + " est premier");
-            else Console.WriteLine("Le nombre " + n + " n'est pas premier");
+            }
+            else
+            {
+                Console.WriteLine("Le nombre " + n + " n'est pas premier");
+            }
         }
     }
 }
