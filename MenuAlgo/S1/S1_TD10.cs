@@ -217,10 +217,10 @@ namespace MenuAlgo
             }
         }
 
-        [Exercice("Entiers impairs divisibles par 3 et 5 entre 0 et 10")]
+        [Exercice("Entiers impairs divisibles par 3 ou 5 entre 0 et 10")]
         static void Exercice17()
         {
-            for(int i = 0; i <= 10; i += 2)
+            for(int i = 1; i <= 10; i += 2)
             {
                 if (i % 3 == 0 || i % 5 == 0)
                 {
