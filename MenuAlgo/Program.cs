@@ -1,25 +1,64 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using OutilsTD;
+using System.IO;
+#if !NO_COMPILER
 using RuntimeCompiler;
+#endif
+#if !NO_SOURCE
+using Microsoft.CodeAnalysis.CSharp;
+#endif
 
 namespace MenuAlgo
 {
     class Program
     {
+        static void PrintCompileOptions()
+        {
+            Console.WriteLine("Options de compilation (v" + Assembly.GetExecutingAssembly().GetName().Version + ") :");
+
+            // Affichage des sources
+#if NO_SOURCE
+            Console.WriteLine(" - Affichage des sources désactivé.");
+#else
+            Console.WriteLine(" - Affichage des sources activé.");
+#endif
+
+            // Compilation sur le tas
+#if NO_COMPILER
+            Console.WriteLine(" - Compilation des fichiers locaux désactivée.");
+#else
+            Console.WriteLine(" - Compilation des fichiers locaux activée.");
+#endif
+
+            // Marge
+            Console.WriteLine("");
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("ESILV - COURS D'ALGORITHMIQUE");
             Console.WriteLine("Exercices par Thomas LEDOS\n");
             // Ce programme détecte automatiquement quels semestres, TD et exercices existent et propose un menu pour les lancer
 
+            PrintCompileOptions();
 
-            CompilerExercices exercicesCompiler = new CompilerExercices(new FileInfo(Assembly.GetEntryAssembly().Location).DirectoryName);
+            string pattern = @"^S(?<s>\d+)_TD(?<td>\d+)$";
+
+            List<Assembly> assemblies = new List<Assembly>();
+            assemblies.Add(Assembly.GetExecutingAssembly());
+            assemblies.AddRange(assemblies[0].GetReferencedAssemblies().Select(x => Assembly.Load(x)));
+
+            string appFolder = new FileInfo(Assembly.GetEntryAssembly().Location).DirectoryName;
+#if !NO_SOURCE
+            SourcesManager.InitSources(appFolder);
+#endif
+#if !NO_COMPILER
+            CompilerExercices exercicesCompiler = new CompilerExercices(appFolder);
             if (exercicesCompiler.CheckFiles())
             {
                 Console.WriteLine("Compilation des fichiers locaux...");
@@ -35,15 +74,10 @@ namespace MenuAlgo
                 Console.WriteLine("Fichiers locaux chargés.");
             }
 
-            Dictionary<int, Dictionary<int, Type>> semestres = new Dictionary<int, Dictionary<int, Type>>();
-            Dictionary<int, Semestre> objectsSemestres = new Dictionary<int, Semestre>();
-
-            string pattern = @"^S(?<s>\d+)_TD(?<td>\d+)$";
-
-            List<Assembly> assemblies = new List<Assembly>();
-            assemblies.Add(Assembly.GetExecutingAssembly());
-            assemblies.AddRange(assemblies[0].GetReferencedAssemblies().Select(x => Assembly.Load(x)));
             assemblies.AddRange(exercicesCompiler.LoadedAssemblies);
+#endif
+
+            SortedDictionary<int, KeyValuePair<Semestre, SortedDictionary<int, Type>>> semestres = new SortedDictionary<int, KeyValuePair<Semestre, SortedDictionary<int, Type>>>();
 
             foreach(Assembly assembly in assemblies)
             {
@@ -57,26 +91,26 @@ namespace MenuAlgo
 
                         if (!semestres.ContainsKey(semestre))
                         {
-                            semestres.Add(semestre, new Dictionary<int, Type>());
-
                             Semestre objectSemestre = new Semestre(semestre);
-                            objectsSemestres.Add(semestre, objectSemestre);
+                            semestres.Add(semestre, new KeyValuePair<Semestre, SortedDictionary<int, Type>>(objectSemestre, new SortedDictionary<int, Type>()));
                         }
 
-                        semestres[semestre].Add(numeroTD, type);
+                        semestres[semestre].Value.Add(numeroTD, type);
                     }
                 }
             }
+
+            // semestres.OrderBy(pair => pair.Key).ToDictionary();
 
             bool continuer = true;
             while(continuer)
             {
                 Console.WriteLine("\nListe des semestres disponibles :");
 
-                foreach (KeyValuePair<int, Dictionary<int, Type>> semestre in semestres)
+                foreach (KeyValuePair<int, KeyValuePair<Semestre, SortedDictionary<int, Type>>> semestre in semestres)
                 {
-                    int nombreTD = semestre.Value.Count;
-                    Console.WriteLine(" - " + objectsSemestres[semestre.Key].Display() + " : " + nombreTD + " séance" + (nombreTD == 1 ? "" : "s") + " de TD");
+                    int nombreTD = semestre.Value.Value.Count;
+                    Console.WriteLine(" - " + semestre.Value.Key.Display() + " : " + nombreTD + " séance" + (nombreTD == 1 ? "" : "s") + " de TD");
                 }
 
                 Console.Write("\nEntre un numéro de semestre, 'c' pour voir le code source ou 'q' pour quitter : ");
@@ -102,20 +136,19 @@ namespace MenuAlgo
                     continue;
                 }
 
-                Semestre semestreObject = objectsSemestres[semestreId];
-                Console.WriteLine("\nListe des TD disponibles pour ce semestre (" + semestreObject.Display() + ") :");
+                KeyValuePair<Semestre, SortedDictionary<int, Type>> semestrePair = semestres[semestreId];
+                Console.WriteLine("\nListe des TD disponibles pour ce semestre (" + semestrePair.Key.Display() + ") :");
 
-                Dictionary<int, Type> semestreTypes = semestres[semestreId];
-                Console.WriteLine(string.Join(", ", semestreTypes.Keys.Select(x => "TD" + x)));
+                Console.WriteLine(string.Join(", ", semestrePair.Value.Keys.Select(x => "TD" + x)));
 
                 Console.Write("\nEntre un numéro de TD ou 0 pour annuler : ");
                 int chosenTD = int.Parse(Console.ReadLine());
 
                 if(chosenTD > 0)
                 {
-                    if(semestreTypes.ContainsKey(chosenTD))
+                    if(semestrePair.Value.ContainsKey(chosenTD))
                     {
-                        GestionTD gestionTD = new GestionTD(semestreObject, chosenTD, semestreTypes[chosenTD]);
+                        GestionTD gestionTD = semestrePair.Key.GetGestionTD(chosenTD, semestrePair.Value[chosenTD]);
                         continuer = gestionTD.MenuExercice();
                     } else Console.WriteLine("Ce TD n'existe pas pour le semestre demandé.\n");
                 }

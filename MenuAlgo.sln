@@ -6,27 +6,63 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutilsTD", "OutilsTD\OutilsTD.csproj", "{C09688DE-E4AD-48E4-B9E3-0531490EB4E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuAlgo", "MenuAlgo\MenuAlgo.csproj", "{9EC058BA-B085-49B0-A670-0854B5DFD9B6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1472EAE4-CF5E-4C19-9630-316E086E0F4C} = {1472EAE4-CF5E-4C19-9630-316E086E0F4C}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RuntimeCompiler", "RuntimeCompiler\RuntimeCompiler.csproj", "{54E15D5E-B1FC-44DF-9467-9496570E3236}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourceTD.Fody", "SourceTD.Fody\SourceTD.Fody.csproj", "{1472EAE4-CF5E-4C19-9630-316E086E0F4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release Light|Any CPU = Release Light|Any CPU
+		Release NoCompiler|Any CPU = Release NoCompiler|Any CPU
+		Release NoSource|Any CPU = Release NoSource|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C09688DE-E4AD-48E4-B9E3-0531490EB4E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C09688DE-E4AD-48E4-B9E3-0531490EB4E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C09688DE-E4AD-48E4-B9E3-0531490EB4E2}.Release Light|Any CPU.ActiveCfg = Release Light|Any CPU
+		{C09688DE-E4AD-48E4-B9E3-0531490EB4E2}.Release Light|Any CPU.Build.0 = Release Light|Any CPU
+		{C09688DE-E4AD-48E4-B9E3-0531490EB4E2}.Release NoCompiler|Any CPU.ActiveCfg = Release NoCompiler|Any CPU
+		{C09688DE-E4AD-48E4-B9E3-0531490EB4E2}.Release NoCompiler|Any CPU.Build.0 = Release NoCompiler|Any CPU
+		{C09688DE-E4AD-48E4-B9E3-0531490EB4E2}.Release NoSource|Any CPU.ActiveCfg = Release NoSource|Any CPU
+		{C09688DE-E4AD-48E4-B9E3-0531490EB4E2}.Release NoSource|Any CPU.Build.0 = Release NoSource|Any CPU
 		{C09688DE-E4AD-48E4-B9E3-0531490EB4E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C09688DE-E4AD-48E4-B9E3-0531490EB4E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9EC058BA-B085-49B0-A670-0854B5DFD9B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9EC058BA-B085-49B0-A670-0854B5DFD9B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EC058BA-B085-49B0-A670-0854B5DFD9B6}.Release Light|Any CPU.ActiveCfg = Release Light|Any CPU
+		{9EC058BA-B085-49B0-A670-0854B5DFD9B6}.Release Light|Any CPU.Build.0 = Release Light|Any CPU
+		{9EC058BA-B085-49B0-A670-0854B5DFD9B6}.Release NoCompiler|Any CPU.ActiveCfg = Release NoCompiler|Any CPU
+		{9EC058BA-B085-49B0-A670-0854B5DFD9B6}.Release NoCompiler|Any CPU.Build.0 = Release NoCompiler|Any CPU
+		{9EC058BA-B085-49B0-A670-0854B5DFD9B6}.Release NoSource|Any CPU.ActiveCfg = Release NoSource|Any CPU
+		{9EC058BA-B085-49B0-A670-0854B5DFD9B6}.Release NoSource|Any CPU.Build.0 = Release NoSource|Any CPU
 		{9EC058BA-B085-49B0-A670-0854B5DFD9B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EC058BA-B085-49B0-A670-0854B5DFD9B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{54E15D5E-B1FC-44DF-9467-9496570E3236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54E15D5E-B1FC-44DF-9467-9496570E3236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54E15D5E-B1FC-44DF-9467-9496570E3236}.Release Light|Any CPU.ActiveCfg = Release Light|Any CPU
+		{54E15D5E-B1FC-44DF-9467-9496570E3236}.Release Light|Any CPU.Build.0 = Release Light|Any CPU
+		{54E15D5E-B1FC-44DF-9467-9496570E3236}.Release NoCompiler|Any CPU.ActiveCfg = Release NoCompiler|Any CPU
+		{54E15D5E-B1FC-44DF-9467-9496570E3236}.Release NoCompiler|Any CPU.Build.0 = Release NoCompiler|Any CPU
+		{54E15D5E-B1FC-44DF-9467-9496570E3236}.Release NoSource|Any CPU.ActiveCfg = Release NoSource|Any CPU
+		{54E15D5E-B1FC-44DF-9467-9496570E3236}.Release NoSource|Any CPU.Build.0 = Release NoSource|Any CPU
 		{54E15D5E-B1FC-44DF-9467-9496570E3236}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54E15D5E-B1FC-44DF-9467-9496570E3236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1472EAE4-CF5E-4C19-9630-316E086E0F4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1472EAE4-CF5E-4C19-9630-316E086E0F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1472EAE4-CF5E-4C19-9630-316E086E0F4C}.Release Light|Any CPU.ActiveCfg = Release Light|Any CPU
+		{1472EAE4-CF5E-4C19-9630-316E086E0F4C}.Release Light|Any CPU.Build.0 = Release Light|Any CPU
+		{1472EAE4-CF5E-4C19-9630-316E086E0F4C}.Release NoCompiler|Any CPU.ActiveCfg = Release NoCompiler|Any CPU
+		{1472EAE4-CF5E-4C19-9630-316E086E0F4C}.Release NoCompiler|Any CPU.Build.0 = Release NoCompiler|Any CPU
+		{1472EAE4-CF5E-4C19-9630-316E086E0F4C}.Release NoSource|Any CPU.ActiveCfg = Release NoSource|Any CPU
+		{1472EAE4-CF5E-4C19-9630-316E086E0F4C}.Release NoSource|Any CPU.Build.0 = Release NoSource|Any CPU
+		{1472EAE4-CF5E-4C19-9630-316E086E0F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1472EAE4-CF5E-4C19-9630-316E086E0F4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

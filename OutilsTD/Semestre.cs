@@ -9,6 +9,8 @@ namespace OutilsTD
         int annee;
         int semestre;
 
+        Dictionary<int, GestionTD> gestionsTD = new Dictionary<int, GestionTD>();
+
         public Semestre(int semestre)
         {
             this.annee = (int)Math.Floor(semestre/2f) + 1;
@@ -25,6 +27,14 @@ namespace OutilsTD
         {
             string display = "Année " + annee + " Semestre " + semestre;
             return upperCase ? display.ToUpper() : display;
+        }
+
+        public GestionTD GetGestionTD(int keyTD, Type classeTD)
+        {
+            if (!gestionsTD.ContainsKey(keyTD))
+                gestionsTD[keyTD] = new GestionTD(this, keyTD, classeTD);
+
+            return gestionsTD[keyTD];
         }
     }
 }

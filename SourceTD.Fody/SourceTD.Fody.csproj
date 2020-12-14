@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -9,22 +9,16 @@
     <DefineConstants>TRACE;NO_COMPILER</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Light|AnyCPU'">
-    <DefineConstants>TRACE;NO_COMPILER;NO_SOURCE</DefineConstants>
-  </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release NoSource|AnyCPU'">
     <DefineConstants>TRACE;NO_SOURCE</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="System.CodeDom" Version="5.0.0" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Light|AnyCPU'">
+    <DefineConstants>TRACE;NO_SOURCE;NO_COMPILER</DefineConstants>
+  </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OutilsTD\OutilsTD.csproj" />
+    <PackageReference Include="FodyHelpers" Version="6.3.0" />
   </ItemGroup>
 
 </Project>
