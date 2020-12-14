@@ -74,6 +74,21 @@ namespace MenuAlgo
             Console.WriteLine("La somme est " + somme);
         }
 
+        [Exercice("Somme d'entiers (sans consigne)")]
+        static void Exercice7()
+        {
+            Console.WriteLine("L'exercice n'a pas de consigne!");
+            // le code ci-dessous ne se compile pas car somme et nombre ne sont pas initialisées
+            /*int somme;
+            int nombre;
+            Console.WriteLine("Entrez des nombres entiers :");
+            for(int i = 0; i < 10; i++)
+            {
+                somme = somme + nombre;
+            }
+            Console.WriteLine("La somme est " + somme);*/
+        }
+
         [Exercice("Plus grand parmi 2 entiers")]
         static void Exercice8()
         {
@@ -95,6 +110,19 @@ namespace MenuAlgo
             {
                 Console.WriteLine("Le nombre " + yy + " est plus grand que " + xx);
             }
+        }
+
+        [Exercice("Observer la sortie du programme")]
+        static void Exercice9()
+        {
+            int i = 1;
+            int j = 1;
+            int n = 4;
+            for (i = 1; i <= n; i++)
+                n--;
+            for (j = 1; j < i; j++)
+                i--;
+            Console.WriteLine(j);
         }
 
         [Exercice("Somme de 10 entiers")]
