@@ -13,7 +13,7 @@ namespace OutilsTD
 
         public Semestre(int semestre)
         {
-            this.annee = (int)Math.Floor(semestre/2f) + 1;
+            this.annee = (int)Math.Ceiling(semestre/2f);
             this.semestre = semestre - (annee - 1) * 2; 
         }
 
