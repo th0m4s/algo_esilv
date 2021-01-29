@@ -362,14 +362,13 @@ namespace MenuAlgo
         [Exercice("15-2", "Calcul de la factorielle (récursive)", exerciceSource = true)]
         static int Factorielle_Recursive(int n)
         {
-            if (n <= 1)
+            int fact = 1;
+            if(n > 1)
             {
-                return 1;
+                fact = n * Factorielle_Recursive(n - 1);
             }
-            else
-            {
-                return n * Factorielle_Recursive(n - 1);
-            }
+
+            return fact;
 
             // return n <= 1 ? 1 : n * Factorielle_Recursive(n - 1);
         }
@@ -394,12 +393,14 @@ namespace MenuAlgo
         static int Puissance(int n1, int n2)
         {
             // si n2 est négatif, il faudrait faire l'inverse, mais ici on a que des entiers, donc on va dire que c'est 0
-            if (n2 <= 0) return 0;
-
-            int resultat = 1;
-            for(int i = 0; i < n2; i++)
+            int resultat = 0;
+            if(n2 > 0)
             {
-                resultat *= n1;
+                resultat = 1;
+                for (int i = 0; i < n2; i++)
+                {
+                    resultat *= n1;
+                }
             }
 
             return resultat;
