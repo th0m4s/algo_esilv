@@ -115,9 +115,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="S1\S1_TD11.cs" />
+    <Compile Include="S1\S1_TD12.cs" />
     <Compile Include="S1\S1_TD8.cs" />
     <Compile Include="S1\S1_TD9.cs" />
     <Compile Include="S1\S1_TD10.cs" />
+    <Compile Include="S2\S2_TD1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -150,7 +152,7 @@
     <Content Include="logo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <WeaverFiles Include="C:\Users\Thomas\OneDrive - De Vinci\Projects\MenuAlgo\SourceTD.Fody\bin\Release Light\netstandard2.0\SourceTD.Fody.dll" />
+    <WeaverFiles Include="$(SolutionDir)\SourceTD.Fody\bin\$(Configuration)\netstandard2.0\SourceTD.Fody.dll" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Costura.Fody" PrivateAssets="all">
