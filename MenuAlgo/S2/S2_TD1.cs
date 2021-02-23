@@ -135,10 +135,12 @@ namespace MenuAlgo
             Console.Write("Entrez une taille : ");
             int size = Convert.ToInt32(Console.ReadLine());
             int[] tab = new int[size];
+            int val = 2;
 
             for (int i = 0; i < size; i++)
             {
-                tab[i] = (int)Math.Pow(2, i+1);
+                tab[i] = val;
+                val *= 2;
             }
 
             // on a déjà fait des affichages de tableau
@@ -206,10 +208,7 @@ namespace MenuAlgo
             foreach(int val in tab)
             {
                 string str = val.ToString();
-                while(str.Length < chars)
-                {
-                    str = "0" + str;
-                }
+                str = Repeter("0", chars - str.Length) + str;
 
                 Console.WriteLine("|" + str + "|");
                 Console.WriteLine(marge);
@@ -239,10 +238,7 @@ namespace MenuAlgo
             foreach (int val in tab)
             {
                 string str = val.ToString();
-                while (str.Length < chars)
-                {
-                    str = "0" + str;
-                }
+                str = Repeter("0", chars - str.Length) + str;
 
                 Console.Write(str + "|");
             }

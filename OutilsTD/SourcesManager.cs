@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-// those don't require sources but are useless if sources don't exists
+// those don't require sources but are useless if sources don't exist
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
@@ -71,7 +71,9 @@ namespace OutilsTD
 
                     // then we count the spaces at the first line, it will give the maximum count of spaces to remove
                     string firstLine = methodLines[0]; // methodLines.Find(line => line.Trim().Length > 0 && line.Contains("static"));
-                    int spacesCount = firstLine.TakeWhile(char.IsWhiteSpace).Count();
+                    int spacesCount = /*firstLine.TakeWhile(char.IsWhiteSpace).Count()*/0;
+
+                    // NOTE: the start spaces removal is not used anymore because it gives a margin for the source lines
 
                     // then we rejoin all the lines with the starting spaces removed
                     methodSource = string.Join("\n", methodLines.Select(line =>
