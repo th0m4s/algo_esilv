@@ -173,7 +173,7 @@ namespace MenuAlgo
         }
 
         [Exercice("10-0", "Méthode 'string Repeter(string chaine, int count)'", exerciceSource = true)]
-        static string Repeter(string chaine, int count)
+       public static string Repeter(string chaine, int count)
         {
             string res = "";
 
