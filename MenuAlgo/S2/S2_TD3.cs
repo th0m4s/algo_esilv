@@ -142,9 +142,9 @@ namespace MenuAlgo
 
             if(tableau != null)
             {
-                foreach (int item in tableau)
+                foreach(int item in tableau)
                 {
-                    if (item == valeur)
+                    if(item == valeur)
                     {
                         res++;
                     }
@@ -168,19 +168,7 @@ namespace MenuAlgo
         [Exercice("6-0", "Méthode 'bool AdditionnerValeur(int[] tableau, int valeur)'", exerciceSource = true)]
         static bool AdditionnerValeur(int[] tableau, int valeur)
         {
-            bool res = false;
-
-            if(tableau != null && tableau.Length > 0)
-            {
-                for(int i = 0; i < tableau.Length; i++)
-                {
-                    tableau[i] += valeur;
-                }
-
-                res = true;
-            }
-
-            return res;
+            return true;
         }
 
         [Exercice("Addition à tous les éléments d'un tableau")]
