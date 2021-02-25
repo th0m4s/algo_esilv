@@ -121,6 +121,7 @@
     <Compile Include="S1\S1_TD10.cs" />
     <Compile Include="S2\S2_TD2.cs" />
     <Compile Include="S2\S2_TD1.cs" />
+    <Compile Include="S2\S2_TD4.cs" />
     <Compile Include="S2\S2_TD3.cs" />
   </ItemGroup>
   <ItemGroup>
