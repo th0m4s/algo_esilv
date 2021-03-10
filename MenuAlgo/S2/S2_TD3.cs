@@ -13,13 +13,16 @@ namespace MenuAlgo
         [Exercice("1-0", "Méthode 'int[] GenererTableauAleatoire(int taille, int valeurMin, int valeurMax)'", exerciceSource = true)]
         static int[] GenererTableauAleatoire(int taille, int valeurMin, int valeurMax)
         {
-            if (taille < 0) return null;
+            int[] tab = null;
 
-            int[] tab = new int[taille];
-            Random rdn = new Random();
-            for(int i = 0; i < taille; i++)
+            if(taille >= 0)
             {
-                tab[i] = rdn.Next(valeurMin, valeurMax+1); // because max is exclusive
+                tab = new int[taille];
+                Random rdn = new Random();
+                for (int i = 0; i < taille; i++)
+                {
+                    tab[i] = rdn.Next(valeurMin, valeurMax + 1); // because max is exclusive
+                }
             }
 
             return tab;
@@ -168,7 +171,19 @@ namespace MenuAlgo
         [Exercice("6-0", "Méthode 'bool AdditionnerValeur(int[] tableau, int valeur)'", exerciceSource = true)]
         static bool AdditionnerValeur(int[] tableau, int valeur)
         {
-            return true;
+            bool res = false;
+
+            if (tableau != null && tableau.Length > 0)
+            {
+                for (int i = 0; i < tableau.Length; i++)
+                {
+                    tableau[i] += valeur;
+                }
+
+                res = true;
+            }
+
+            return res;
         }
 
         [Exercice("Addition à tous les éléments d'un tableau")]

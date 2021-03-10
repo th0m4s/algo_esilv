@@ -121,15 +121,43 @@ namespace MenuAlgo
             return PartieGagnee(tasAllumettes) || PartiePerdue(tasAllumettes);
         }
 
-        static void Exercice99()
+        [Exercice("JEU COMPLET DES ALLUMETTES")]
+        static void Exercice9()
         {
             bool[] allumettes = CreerTasAllumettes(12);
 
-            allumettes[3] = false;
-            allumettes[6] = false;
-            allumettes[10] = false;
+            int joueur = 0;
+            string ligne = S2_TD1.Repeter("=", 36);
+
+            while(!FinPartie(allumettes))
+            {
+                joueur = (joueur % 2) + 1;
+                Console.WriteLine(ligne);
+                Console.WriteLine("C'est au tour du joueur " + joueur + " de jouer !");
+                Console.WriteLine(ligne + "\n");
+
+                AfficherTasAlumettes(allumettes);
+                Console.WriteLine();
+
+                int count = DemanderNombreAllumettesARetirer(Math.Min(NombreAllumettesRestantes(allumettes), 3));
+
+                for(int i = 0; i < count; i++)
+                {
+                    int pos = -1;
+                    while(!PositionValide(allumettes, pos) || !allumettes[pos])
+                    {
+                        Console.Write("A quel emplacement retirer l'allumette " + (i + 1) + " ? ");
+                        pos = int.Parse(Console.ReadLine())-1;
+                    }
+
+                    RetirerUneAllumette(allumettes, pos);
+                }
+
+                Console.WriteLine("\n");
+            }
 
             AfficherTasAlumettes(allumettes);
+            Console.WriteLine("Le joueur " + joueur + " a " + (PartieGagnee(allumettes) ? "gagné !" : "perdu :(") + "\n");
         }
     }
 }
