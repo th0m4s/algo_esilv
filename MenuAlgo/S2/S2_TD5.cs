@@ -228,9 +228,9 @@ namespace MenuAlgo
             {
                 res = new int[nbLignes][];
 
-                for (int i = 0; i < nbLignes; i++)
+                if (nbColonnes >= 0)
                 {
-                    if(nbColonnes >= 0)
+                    for (int i = 0; i < nbLignes; i++)
                     {
                         res[i] = new int[nbColonnes];
 
