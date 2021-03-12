@@ -111,7 +111,7 @@ namespace MenuAlgo
             int[] tab = new int[l];
             for(int i = 0; i < l; i++)
             {
-                Console.WriteLine("Entrez l'élément " + i + " : ");
+                Console.Write("Entrez l'élément " + i + " : ");
                 tab[i] = int.Parse(Console.ReadLine());
             }
 
