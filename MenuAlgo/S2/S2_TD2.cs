@@ -95,6 +95,28 @@ namespace MenuAlgo
             }
         }
 
+        [Exercice("2-2", "Méthode 'void AfficherTableau(double[] tab)'", exerciceSource = true)]
+        public static void AfficherTableau(double[] tab)
+        {
+            if (tab == null)
+            {
+                Console.WriteLine("(tableau null)");
+            }
+            else if (tab.Length == 0)
+            {
+                Console.WriteLine("(tableau vide)");
+            }
+            else
+            {
+                for (int i = 0; i < tab.Length - 1; i++)
+                {
+                    Console.Write(tab[i] + " ; ");
+                }
+
+                Console.WriteLine(tab[tab.Length - 1]);
+            }
+        }
+
         [Exercice("3-0", "Méthode 'int[] RemplirTableau()'", exerciceSource = true)]
         public static int[] RemplirTableau()
         {
