@@ -300,5 +300,55 @@ namespace MenuAlgo
             AfficherMatriceTitre(transposee, "Matrice tranposée");
             AfficherMatriceTitre(MatriceTransposee(transposee), "Vérification");
         }
+
+        [Exercice("7-0", "Méthode 'int[,] ProduitMatriciel(int[,] mat1, int[,] mat2)'", exerciceSource = true)]
+        static int[,] ProduitMatriciel(int[,] mat1, int[,] mat2)
+        {
+            int[,] res = null;
+
+            if(mat1 != null && mat2 != null)
+            {
+                int m = mat1.GetLength(0);
+                int n1 = mat1.GetLength(1);
+                int n2 = mat2.GetLength(0);
+                int p = mat2.GetLength(1);
+
+                if(n1 == n2)
+                {
+                    res = new int[m, p];
+
+                    for(int l = 0; l < m; l++)
+                    {
+                        for(int c = 0; c < p; c++)
+                        {
+                            int val = 0;
+
+                            for(int i = 0; i < n1; i++)
+                            {
+                                val += mat1[l, i] * mat2[i, c];
+                            }
+
+                            res[l, c] = val;
+                        }
+                    }
+                }
+            }
+
+            return res;
+        }
+
+        [Exercice("Produit matricel de 2 matrices")]
+        static void Exercice7_1()
+        {
+            int[,] mat1 = DemandeMatriceAleatoire();
+            int[,] mat2 = DemandeMatriceAleatoire();
+
+            int[,] res = ProduitMatriciel(mat1, mat2);
+
+            AfficherMatriceTitre(mat1, "Matrice A");
+            AfficherMatriceTitre(mat2, "Matrice B");
+
+            AfficherMatriceTitre(res, "Produit matriciel AB");
+        }
     }
 }
