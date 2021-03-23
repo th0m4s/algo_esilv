@@ -11,7 +11,7 @@ namespace MenuAlgo
     public class S2_TD6
     {
         [Exercice("0-0", "Méthode 'int[,] MatriceAleatoire(int lignes, int colonnes)'", exerciceSource = true)]
-        public static int[,] MatriceAleatoire(int lignes, int colonnes, int min = 0, int max = 100)
+        public static int[,] MatriceAleatoire(int lignes, int colonnes, int min, int max)
         {
             int[,] matrice = null;
 
@@ -310,6 +310,7 @@ namespace MenuAlgo
             {
                 int m = mat1.GetLength(0);
                 int n1 = mat1.GetLength(1);
+
                 int n2 = mat2.GetLength(0);
                 int p = mat2.GetLength(1);
 
@@ -317,18 +318,18 @@ namespace MenuAlgo
                 {
                     res = new int[m, p];
 
-                    for(int l = 0; l < m; l++)
+                    for(int i = 0; i < m; i++)
                     {
-                        for(int c = 0; c < p; c++)
+                        for(int j = 0; j < p; j++)
                         {
-                            int val = 0;
+                            int somme = 0;
 
-                            for(int i = 0; i < n1; i++)
+                            for(int k = 0; k < n1; k++)
                             {
-                                val += mat1[l, i] * mat2[i, c];
+                                somme += mat1[i, k] * mat2[k, j];
                             }
 
-                            res[l, c] = val;
+                            res[i, j] = somme;
                         }
                     }
                 }

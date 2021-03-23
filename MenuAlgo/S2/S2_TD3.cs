@@ -11,7 +11,7 @@ namespace MenuAlgo
     public class S2_TD3
     {
         [Exercice("1-0", "Méthode 'int[] GenererTableauAleatoire(int taille, int valeurMin, int valeurMax)'", exerciceSource = true)]
-        static int[] GenererTableauAleatoire(int taille, int valeurMin, int valeurMax)
+        public static int[] GenererTableauAleatoire(int taille, int valeurMin, int valeurMax)
         {
             int[] tab = null;
 
@@ -34,10 +34,10 @@ namespace MenuAlgo
             Console.Write("Entrez une taille de tableau : ");
             int taille = int.Parse(Console.ReadLine());
 
-            Console.Write("Entrez une valeur max : ");
+            Console.Write("Entrez une valeur min : ");
             int min = int.Parse(Console.ReadLine());
 
-            Console.Write("Entrez une valeur min : ");
+            Console.Write("Entrez une valeur max : ");
             int max = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Tableau généré :");
