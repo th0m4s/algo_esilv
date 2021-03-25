@@ -174,7 +174,7 @@ namespace MenuAlgo
             }
             bullesStopwatch.Stop();
             TimeSpan tsBulles = bullesStopwatch.Elapsed;
-            Console.WriteLine("Tri à bulles : " + string.Format("{0:00}.{1:00}s", tsBulles.Seconds, tsBulles.Milliseconds / 10));
+            Console.WriteLine("Tri à bulles : " + string.Format("{0:00}.{1:000}s", tsBulles.Seconds, tsBulles.Milliseconds));
 
             Stopwatch cocktailStopwatch = new Stopwatch();
             cocktailStopwatch.Start();
@@ -184,7 +184,7 @@ namespace MenuAlgo
             }
             cocktailStopwatch.Stop();
             TimeSpan tsCocktail = cocktailStopwatch.Elapsed;
-            Console.WriteLine("Tri cocktail : " + string.Format("{0:00}.{1:00}s", tsCocktail.Seconds, tsCocktail.Milliseconds / 10));
+            Console.WriteLine("Tri cocktail : " + string.Format("{0:00}.{1:000}s", tsCocktail.Seconds, tsCocktail.Milliseconds));
 
             // ça prend beaucoup de mémoire donc on le libère le plus tôt possible
             tableauxBulles = null;
