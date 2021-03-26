@@ -395,7 +395,7 @@ namespace MenuAlgo
 
             for (int i = 0; i < n; i++)
             {
-                // l'énonce n'était pas clair, car les points doivent être dans [0, 1] mais le cercle à un rayon de 1, donc un diamètre de 2
+                // l'énoncé n'était pas clair, car les points doivent être dans [0, 1] mais le cercle à un rayon de 1, donc un diamètre de 2
                 // j'ai donc choisi un cercle de diamètre 1 (rayon 0.5d) centré sur l'origine
                 double x = generateurAlea.NextDouble() - 0.5d;
                 double y = generateurAlea.NextDouble() - 0.5d;
@@ -430,7 +430,7 @@ namespace MenuAlgo
         public static void Prb2_AfficheTriangle(int hauteur)
         {
             // pour centrer le texte, il faut connaitre le nombre de points sur la dernière ligne
-            // on devrait la multipliée par 2 pour les espaces, mais comme on doit aussi la diviser par 2 plus bas
+            // on devrait la multiplier par 2 pour les espaces, mais comme on doit aussi la diviser par 2 plus bas
             // pour calculer les marges, on la laisse comme ça
 
             int largeur = u_n(hauteur);
