@@ -12,7 +12,7 @@ namespace MenuAlgo
     public class S2_TD7
     {
         [Exercice("1", "Méthode 'bool Permuter(int[] tableau, int index1, int index2)'", exerciceSource = true)]
-        static bool Permuter(int[] tableau, int index1, int index2, bool force = false)
+        public static bool Permuter(int[] tableau, int index1, int index2, bool force = false)
         {
             bool res = false;
 
