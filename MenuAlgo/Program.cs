@@ -103,14 +103,14 @@ namespace MenuAlgo
             // semestres.OrderBy(pair => pair.Key).ToDictionary();
 
             bool continuer = true;
-            while(continuer)
+            while (continuer)
             {
                 Console.WriteLine("\nListe des semestres disponibles :");
 
                 foreach (KeyValuePair<int, KeyValuePair<Semestre, SortedDictionary<int, Type>>> semestre in semestres)
                 {
                     int nombreTD = semestre.Value.Value.Count;
-                    Console.WriteLine(" - " + semestre.Value.Key.Display() + " : " + nombreTD + " séance" + (nombreTD == 1 ? "" : "s") + " de TD");
+                    Console.WriteLine(" " + semestre.Key + ". " + semestre.Value.Key.Display() + " : " + nombreTD + " séance" + (nombreTD == 1 ? "" : "s") + " de TD");
                 }
 
                 Console.Write("\nEntre un numéro de semestre, 'c' pour voir le code source ou 'q' pour quitter : ");
@@ -123,8 +123,10 @@ namespace MenuAlgo
                     continue;
                 }
 
+                string[] semestreParts = semestreString.Split('-', '_', '.', ',');
+
                 int semestreId = 0;
-                if(!int.TryParse(semestreString, out semestreId))
+                if (!int.TryParse(semestreParts[0], out semestreId))
                 {
                     Console.WriteLine("Ce n'est pas un numéro de semestre...");
                     continue;
@@ -136,13 +138,18 @@ namespace MenuAlgo
                     continue;
                 }
 
+                int chosenTD = 0;
                 KeyValuePair<Semestre, SortedDictionary<int, Type>> semestrePair = semestres[semestreId];
-                Console.WriteLine("\nListe des TD disponibles pour ce semestre (" + semestrePair.Key.Display() + ") :");
 
-                Console.WriteLine(string.Join(", ", semestrePair.Value.Keys.Select(x => "TD" + x)));
+                if (semestreParts.Length != 2 || !int.TryParse(semestreParts[1], out chosenTD) || chosenTD <= 0)
+                {
+                    Console.WriteLine("\nListe des TD disponibles pour ce semestre (" + semestrePair.Key.Display() + ") :");
 
-                Console.Write("\nEntre un numéro de TD ou 0 pour annuler : ");
-                int chosenTD = int.Parse(Console.ReadLine());
+                    Console.WriteLine(string.Join(", ", semestrePair.Value.Keys.Select(x => "TD" + x)));
+
+                    Console.Write("\nEntre un numéro de TD ou 0 pour annuler : ");
+                    chosenTD = int.Parse(Console.ReadLine());
+                } 
 
                 if(chosenTD > 0)
                 {
