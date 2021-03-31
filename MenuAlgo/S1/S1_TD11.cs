@@ -348,10 +348,10 @@ namespace MenuAlgo
         }
 
         [Exercice("15-1", "Calcul de la factorielle (boucle for)", exerciceSource = true)]
-        static int Factorielle_BoucleFor(int n)
+        public static int Factorielle_BoucleFor(int n)
         {
             int f = 1;
-            for(int i = 2; i < n; i++)
+            for(int i = 2; i <= n; i++)
             {
                 f *= i;
             }
